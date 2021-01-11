@@ -5,6 +5,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.delet_dis.bubbles.databinding.ActivityMainBinding
 import com.delet_dis.bubbles.view.MoBikeTagLayout
@@ -41,6 +42,14 @@ class MainActivity : AppCompatActivity() {
       }
 
       override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    }
+
+    moBikeTagLayout.setOnClickListener {
+      val imageView:ImageView = ImageView(applicationContext)
+      imageView.setImageResource(R.drawable.icons_03)
+      moBikeTagLayout.addView(imageView)
+      imageView.layoutParams.height = 20
+      imageView.layoutParams.width = 20
     }
   }
 
