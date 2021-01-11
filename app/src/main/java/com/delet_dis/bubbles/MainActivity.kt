@@ -1,5 +1,6 @@
 package com.delet_dis.bubbles
 
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -45,11 +46,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     moBikeTagLayout.setOnClickListener {
-      val imageView:ImageView = ImageView(applicationContext)
-      imageView.setImageResource(R.drawable.icons_03)
+      val randomSize = (50..300).random()
+      val imageView = ImageView(applicationContext)
+      imageView.setImageResource(R.drawable.bubble_vector)
+      imageView.setColorFilter(Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random()))
       moBikeTagLayout.addView(imageView)
-      imageView.layoutParams.height = 20
-      imageView.layoutParams.width = 20
+      imageView.layoutParams.height = randomSize
+      imageView.layoutParams.width = randomSize
     }
   }
 
@@ -62,4 +65,5 @@ class MainActivity : AppCompatActivity() {
     super.onPause()
     sensorManager.unregisterListener(sensorEventListener)
   }
+
 }
