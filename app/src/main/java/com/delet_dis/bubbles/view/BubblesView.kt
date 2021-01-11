@@ -11,14 +11,10 @@ import org.jbox2d.collision.shapes.EdgeShape
 import org.jbox2d.common.Vec2
 import org.jbox2d.dynamics.*
 
-/**
- * Created by huzongyao on 2018/5/11.
- * render by set the children view
- */
+
 class BubblesView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context!!, attrs, defStyleAttr) {
   private var mWorld: World? = null
 
-  // assume the world width is 8m
   private val mWorldWidth = 8f
   private var mWorldHeight = 0f
   private var mDpm = 0f
@@ -78,25 +74,23 @@ class BubblesView @JvmOverloads constructor(context: Context?, attrs: AttributeS
     return body
   }
 
-  /**
-   * create the borders for the world
-   */
+
   private fun createBorder() {
     val bodyDef = BodyDef()
     val groundBody = mWorld!!.createBody(bodyDef)
     val edge = EdgeShape()
     val boxShapeDef = FixtureDef()
     boxShapeDef.shape = edge
-    // top
+
     edge[Vec2(0f, 0f)] = Vec2(mWorldWidth, 0f)
     groundBody.createFixture(boxShapeDef)
-    // left
+
     edge[Vec2(0f, 0f)] = Vec2(0f, mWorldHeight)
     groundBody.createFixture(boxShapeDef)
-    // right
+
     edge[Vec2(mWorldWidth, 0f)] = Vec2(mWorldWidth, mWorldHeight)
     groundBody.createFixture(boxShapeDef)
-    // bottom
+
     edge[Vec2(0f, mWorldHeight)] = Vec2(mWorldWidth, mWorldHeight)
     groundBody.createFixture(boxShapeDef)
   }
