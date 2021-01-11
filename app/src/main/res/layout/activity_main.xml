@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-  <com.delet_dis.bubbles.view.BubblesLayout
+  <com.delet_dis.bubbles.view.BubblesView
           android:id="@+id/bubblesLayout"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
@@ -16,7 +16,7 @@
           app:layout_constraintTop_toTopOf="parent">
 
 
-  </com.delet_dis.bubbles.view.BubblesLayout>
+  </com.delet_dis.bubbles.view.BubblesView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

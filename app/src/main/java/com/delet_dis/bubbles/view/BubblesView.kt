@@ -15,7 +15,7 @@ import org.jbox2d.dynamics.*
  * Created by huzongyao on 2018/5/11.
  * render by set the children view
  */
-class BubblesLayout @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context!!, attrs, defStyleAttr) {
+class BubblesView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context!!, attrs, defStyleAttr) {
   private var mWorld: World? = null
 
   // assume the world width is 8m

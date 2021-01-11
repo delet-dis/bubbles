@@ -9,11 +9,11 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.delet_dis.bubbles.databinding.ActivityMainBinding
-import com.delet_dis.bubbles.view.BubblesLayout
+import com.delet_dis.bubbles.view.BubblesView
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var bubblesLayout: BubblesLayout
+  private lateinit var bubblesLauout: BubblesView
   private lateinit var sensorManager: SensorManager
   private lateinit var accelerometerSensor: Sensor
   private lateinit var sensorEventListener: SensorEventListener
@@ -31,26 +31,26 @@ class MainActivity : AppCompatActivity() {
     sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
     accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
-    bubblesLayout = binding.bubblesLayout
+    bubblesLauout = binding.bubblesLayout
 
     sensorEventListener = object : SensorEventListener {
       override fun onSensorChanged(event: SensorEvent) {
         if (event.sensor.type == Sensor.TYPE_ACCELEROMETER) {
           val x = event.values[0]
           val y = event.values[1]
-          bubblesLayout.onSensorChanged(x, y)
+          bubblesLauout.onSensorChanged(x, y)
         }
       }
 
       override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
     }
 
-    bubblesLayout.setOnClickListener {
+    bubblesLauout.setOnClickListener {
       val randomSize = (50..300).random()
       val imageView = ImageView(applicationContext)
       imageView.setImageResource(R.drawable.bubble_vector)
       imageView.setColorFilter(Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random()))
-      bubblesLayout.addView(imageView)
+      bubblesLauout.addView(imageView)
       imageView.layoutParams.height = randomSize
       imageView.layoutParams.width = randomSize
     }
