@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
 
         generateBubble(event.x, event.y)
       }
-
       v?.onTouchEvent(event) ?: true
     }
   }
@@ -66,14 +65,16 @@ class MainActivity : AppCompatActivity() {
     sensorManager.unregisterListener(sensorEventListener)
   }
 
-  private fun generateBubble(clickX: Float, clickY: Float) {
+  private fun generateBubble(clickXNotCentered: Float, clickYNotCentered: Float) {
     val randomSize = (50..300).random()
+    val clickXCentered = clickXNotCentered - randomSize / 2
+    val clickYCentered = clickYNotCentered - randomSize / 2
     val bubbleImageView = ImageView(applicationContext)
     bubbleImageView.setImageResource(R.drawable.bubble_vector)
     bubbleImageView.setColorFilter(Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random()))
     bubblesLayout.addView(bubbleImageView)
-    bubbleImageView.x = clickX
-    bubbleImageView.y = clickY
+    bubbleImageView.x = clickXCentered
+    bubbleImageView.y = clickYCentered
     bubbleImageView.layoutParams.height = randomSize
     bubbleImageView.layoutParams.width = randomSize
   }
