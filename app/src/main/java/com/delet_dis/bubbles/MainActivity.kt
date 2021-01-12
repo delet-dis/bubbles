@@ -6,6 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.delet_dis.bubbles.databinding.ActivityMainBinding
@@ -44,8 +45,14 @@ class MainActivity : AppCompatActivity() {
       override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
     }
 
-    bubblesLayout.setOnClickListener {
-      generateBubble()
+    bubblesLayout.setOnTouchListener { v, event ->
+      if (event?.action == MotionEvent.ACTION_DOWN) {
+        view.performClick()
+
+        generateBubble(event.x, event.y)
+      }
+
+      v?.onTouchEvent(event) ?: true
     }
   }
 
@@ -59,12 +66,14 @@ class MainActivity : AppCompatActivity() {
     sensorManager.unregisterListener(sensorEventListener)
   }
 
-  private fun generateBubble() {
+  private fun generateBubble(clickX: Float, clickY: Float) {
     val randomSize = (50..300).random()
     val bubbleImageView = ImageView(applicationContext)
     bubbleImageView.setImageResource(R.drawable.bubble_vector)
     bubbleImageView.setColorFilter(Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random()))
     bubblesLayout.addView(bubbleImageView)
+    bubbleImageView.x = clickX
+    bubbleImageView.y = clickY
     bubbleImageView.layoutParams.height = randomSize
     bubbleImageView.layoutParams.width = randomSize
   }

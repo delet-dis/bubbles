@@ -116,6 +116,10 @@ class BubblesView @JvmOverloads constructor(context: Context?, attrs: AttributeS
     mWorld!!.gravity = Vec2(realX, realY)
   }
 
+  override fun performClick(): Boolean {
+    return super.performClick()
+  }
+
   init {
     init()
   }
