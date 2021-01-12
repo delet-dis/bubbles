@@ -1,4 +1,4 @@
-## Visual novel made by Igor Efimov
+## Physics-simulated bubbles made by Igor Efimov
 ![Android CI](https://github.com/delet-dis/bubbles/workflows/Android%20CI/badge.svg)
 
 <br/>
